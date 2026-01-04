@@ -1,0 +1,261 @@
+<<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SSM</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container header-row">
+        <a class="brand" href="#/home">
+          <span class="brand__title">SSM</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+
+        <nav class="nav" id="mainNav">
+          <a class="nav__link" href="#/home">Inicio</a>
+          <a class="nav__link" href="#/alcoholimpiadas">Alcoholimpiadas</a>
+          <a class="nav__link" href="#/ryder">Ryder SSM</a>
+          <a class="nav__link" href="#/arbol">Árbol Genealógico</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="container main">
+
+      <!-- HOME -->
+      <section class="page is-active" data-page="home">
+        <h1 class="h1">SSM</h1>
+        <p class="muted">
+          Página familiar para noticias y eventos.
+        </p>
+
+        <div class="section-head">
+          <h2 class="h2">Tablón de anuncios</h2>
+        </div>
+
+       <div class="stack">
+  <!-- FEED ARRIBA -->
+  <div class="card">
+    <div class="card__head">
+      <h3 class="h3">Últimas publicaciones</h3>
+    </div>
+    <div id="homeFeed" class="feed"></div>
+  </div>
+
+  <!-- FORMULARIO ABAJO -->
+  <div class="card">
+    <h3 class="h3">Publicar</h3>
+    <form id="homePostForm" class="form">
+      <input class="input" name="title" placeholder="Título" required />
+      <textarea class="textarea" name="body" placeholder="Mensaje" required></textarea>
+      <input class="input" name="imageUrl" placeholder="URL imagen (opcional)" />
+      <button class="btn" type="submit">Publicar</button>
+    </form>
+  </div>
+</div>
+
+      </section>
+
+      <!-- ALCOHOLIMPIADAS -->
+      <section class="page" data-page="alcoholimpiadas">
+        <h1 class="h1">Alcoholimpiadas</h1>
+        <p class="muted">
+          Se está trabajando en crear y actualizar esta página.
+          Pronto estará lista.
+        </p>
+      </section>
+
+      <!-- ÁRBOL -->
+      <section class="page" data-page="arbol">
+        <h1 class="h1">Árbol Genealógico</h1>
+        <p class="muted">
+          Se está trabajando en crear y actualizar esta página.
+          Pronto estará lista.
+        </p>
+      </section>
+
+      <!-- RYDER -->
+      <section class="page" data-page="ryder">
+        <h1 class="h1">Ryder SSM</h1>
+        <p class="muted">
+          Noticias, clasificaciones y eventos Ryder.
+        </p>
+
+        <div class="tabs">
+          <button class="tab is-active" data-tab="ryder-news">Noticias</button>
+          <button class="tab" data-tab="ryder-standings">Clasificación general</button>
+          <button class="tab" data-tab="ryder-winter-2026">Winter Ryder 2026</button>
+        </div>
+
+        <!-- NOTICIAS -->
+        <section class="tab-panel is-active" id="ryder-news">
+         <div class="stack">
+  <!-- FEED ARRIBA -->
+  <div class="card">
+    <div class="card__head">
+      <h3 class="h3">Últimas noticias Ryder</h3>
+    </div>
+    <div id="ryderFeed" class="feed"></div>
+  </div>
+
+  <!-- FORMULARIO ABAJO -->
+  <div class="card">
+    <h3 class="h3">Publicar en Ryder</h3>
+    <form id="ryderPostForm" class="form">
+      <input class="input" name="title" placeholder="Título" required />
+      <textarea class="textarea" name="body" placeholder="Mensaje" required></textarea>
+      <input class="input" name="imageUrl" placeholder="URL imagen (opcional)" />
+      <button class="btn" type="submit">Publicar</button>
+    </form>
+  </div>
+</div>
+
+        </section>
+
+        <!-- CLASIFICACIÓN -->
+        <section class="tab-panel" id="ryder-standings">
+          <div class="card">
+            <h3 class="h3">Clasificación general</h3>
+            <p class="muted">En construcción.</p>
+          </div>
+        </section>
+
+        <!-- WINTER RYDER 2026 -->
+        <section class="tab-panel" id="ryder-winter-2026">
+          <<div class="card card--banner">
+  <div class="banner">
+    <div class="banner__text">
+      <h2 class="h2">Winter Ryder 2026</h2>
+      <p class="muted">Sábado 10 de enero de 2026</p>
+    </div>
+
+    <!-- Logo visible (arriba/derecha en desktop; se recoloca en móvil) -->
+    <img
+      src="assets/winter-ryder-2026.png"
+      alt="Logo Winter Ryder SSM 2026"
+      class="banner__img"
+    />
+  </div>
+</div>
+
+<div class="grid-2">
+  <!-- EQUIPOS -->
+  <div class="card">
+    <h3 class="h3">Equipos y polos</h3>
+
+    <div class="team team--white">
+      <div class="team__head">
+        <span class="pill">Equipo BLANCO (polo blanco)</span>
+        <span class="pill pill--cap">Capitán: Rafa</span>
+      </div>
+      <ul class="list">
+        <li>Rafa</li>
+        <li>Larkin</li>
+        <li>Jimmy</li>
+        <li>Tomás</li>
+        <li>Gonzalo</li>
+        <li>José Feser</li>
+      </ul>
+    </div>
+
+    <div class="team team--blue">
+      <div class="team__head">
+        <span class="pill">Equipo AZUL (polo oscuro)</span>
+        <span class="pill pill--cap">Capitán: Juanito</span>
+      </div>
+      <ul class="list">
+        <li>Juanito</li>
+        <li>Borja</li>
+        <li>Peri</li>
+        <li>Sebas</li>
+        <li>Richi</li>
+        <li>Chono</li>
+      </ul>
+    </div>
+
+    <p class="tiny muted">
+      Formato: match play, a pelo (sin golpes). Excepción: Peri y Jimmy si lo acuerdan entre ellos.
+    </p>
+  </div>
+
+  <!-- ENFRENTAMIENTOS -->
+  <div class="card">
+    <h3 class="h3">Horarios y enfrentamientos</h3>
+
+    <div class="matches">
+      <div class="match-slot">
+        <div class="match-slot__time">09:40</div>
+        <div class="match">
+          <span class="tag tag--white">Blanco</span>
+          <span>José Feser</span>
+          <span class="vs">vs</span>
+          <span>Chono</span>
+          <span class="tag tag--blue">Azul</span>
+        </div>
+        <div class="match">
+          <span class="tag tag--white">Blanco</span>
+          <span>Jimmy</span>
+          <span class="vs">vs</span>
+          <span>Peri</span>
+          <span class="tag tag--blue">Azul</span>
+        </div>
+      </div>
+
+      <div class="match-slot">
+        <div class="match-slot__time">09:50</div>
+        <div class="match">
+          <span class="tag tag--white">Blanco</span>
+          <span>Gonzalo</span>
+          <span class="vs">vs</span>
+          <span>Richi</span>
+          <span class="tag tag--blue">Azul</span>
+        </div>
+        <div class="match">
+          <span class="tag tag--white">Blanco</span>
+          <span>Tomás</span>
+          <span class="vs">vs</span>
+          <span>Sebas</span>
+          <span class="tag tag--blue">Azul</span>
+        </div>
+      </div>
+
+      <div class="match-slot">
+        <div class="match-slot__time">10:30</div>
+        <div class="match">
+          <span class="tag tag--white">Blanco</span>
+          <span>Larkin</span>
+          <span class="vs">vs</span>
+          <span>Borja</span>
+          <span class="tag tag--blue">Azul</span>
+        </div>
+        <div class="match">
+          <span class="tag tag--white">Blanco</span>
+          <span>Rafa</span>
+          <span class="vs">vs</span>
+          <span>Juanito</span>
+          <span class="tag tag--blue">Azul</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </section>
+
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
