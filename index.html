@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SSM</title>
     <link rel="stylesheet" href="styles.css" />
+    <meta name="description" content="Página familiar SSM: noticias, Ryder SSM, Alcoholimpiadas y árbol genealógico." />
   </head>
 
   <body>
     <!-- HEADER -->
     <header class="site-header">
       <div class="container header-row">
-        <a class="brand" href="#/home">
+        <a class="brand" href="#/home" aria-label="Ir a inicio">
           <span class="brand__title">SSM</span>
         </a>
 
-        <button class="nav-toggle" id="navToggle">
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menú">
           <span class="nav-toggle__bar"></span>
           <span class="nav-toggle__bar"></span>
           <span class="nav-toggle__bar"></span>
@@ -32,231 +33,307 @@
 
     <!-- MAIN -->
     <main class="container main">
-
       <!-- HOME -->
       <section class="page is-active" data-page="home">
-        <h1 class="h1">SSM</h1>
-        <p class="muted">
-          Página familiar para noticias y eventos.
-        </p>
+        <div class="hero">
+          <div class="hero__left">
+            <h1 class="h1">SSM</h1>
+            <p class="muted">Página familiar para centralizar noticias, eventos y el histórico de Ryder SSM.</p>
+          </div>
+          <div class="hero__right">
+            <div class="card card--logo">
+              <img src="winter-ryder-2026.png" alt="Logo Winter Ryder SSM 2026" class="logo" />
+            </div>
+          </div>
+        </div>
 
         <div class="section-head">
           <h2 class="h2">Tablón de anuncios</h2>
+          <p class="muted">Lo último aparece arriba. Publicaciones compartidas (Supabase).</p>
         </div>
 
-       <div class="stack">
-  <!-- FEED ARRIBA -->
-  <div class="card">
-    <div class="card__head">
-      <h3 class="h3">Últimas publicaciones</h3>
-    </div>
-    <div id="homeFeed" class="feed"></div>
-  </div>
+        <div class="stack">
+          <!-- FEED ARRIBA -->
+          <div class="card">
+            <div class="card__head">
+              <h3 class="h3">Últimas publicaciones</h3>
+            </div>
+            <div id="homeFeed" class="feed" aria-live="polite"></div>
+          </div>
 
-  <!-- FORMULARIO ABAJO -->
-  <div class="card">
-    <h3 class="h3">Publicar</h3>
-    <form id="homePostForm" class="form">
-      <input class="input" name="title" placeholder="Título" required />
-      <textarea class="textarea" name="body" placeholder="Mensaje" required></textarea>
-      <input class="input" name="imageUrl" placeholder="URL imagen (opcional)" />
-      <button class="btn" type="submit">Publicar</button>
-    </form>
-  </div>
-</div>
+          <!-- FORM ABAJO -->
+          <div class="card">
+            <h3 class="h3">Publicar</h3>
+            <form id="homePostForm" class="form">
+              <label class="label">
+                Título
+                <input class="input" name="title" type="text" maxlength="80" placeholder="Ej.: Plan del fin de semana" required />
+              </label>
 
+              <label class="label">
+                Mensaje
+                <textarea class="textarea" name="body" rows="4" maxlength="800" placeholder="Escribe aquí..." required></textarea>
+              </label>
+
+              <label class="label">
+                Imagen (URL opcional)
+                <input class="input" name="imageUrl" type="url" placeholder="https://..." />
+              </label>
+
+              <!-- NUEVO: clave familiar -->
+              <label class="label">
+                Clave familiar
+                <input class="input" name="familyKey" type="password" placeholder="FAMILIASSM" required />
+              </label>
+
+              <button class="btn" type="submit">Publicar</button>
+              <p class="tiny muted">Nota: la clave familiar protege la publicación. La lectura es pública para quien tenga el enlace.</p>
+            </form>
+          </div>
+        </div>
       </section>
 
       <!-- ALCOHOLIMPIADAS -->
       <section class="page" data-page="alcoholimpiadas">
-        <h1 class="h1">Alcoholimpiadas</h1>
-        <p class="muted">
-          Se está trabajando en crear y actualizar esta página.
-          Pronto estará lista.
-        </p>
+        <div class="section-head">
+          <h1 class="h1">Alcoholimpiadas</h1>
+          <p class="muted">Se está trabajando en crear y actualizar esta sección. Pronto estará lista.</p>
+        </div>
+
+        <div class="card">
+          <p>Aquí irá el contenido del evento de verano (histórico, reglas, fotos, etc.).</p>
+        </div>
       </section>
 
-      <!-- ÁRBOL -->
+      <!-- ARBOL -->
       <section class="page" data-page="arbol">
-        <h1 class="h1">Árbol Genealógico</h1>
-        <p class="muted">
-          Se está trabajando en crear y actualizar esta página.
-          Pronto estará lista.
-        </p>
+        <div class="section-head">
+          <h1 class="h1">Árbol genealógico</h1>
+          <p class="muted">Se está trabajando en crear y actualizar esta sección. Pronto estará lista.</p>
+        </div>
+
+        <div class="card">
+          <p>Aquí irá el árbol y la estructura familiar.</p>
+        </div>
       </section>
 
       <!-- RYDER -->
       <section class="page" data-page="ryder">
-        <h1 class="h1">Ryder SSM</h1>
-        <p class="muted">
-          Noticias, clasificaciones y eventos Ryder.
-        </p>
-
-        <div class="tabs">
-          <button class="tab is-active" data-tab="ryder-news">Noticias</button>
-          <button class="tab" data-tab="ryder-standings">Clasificación general</button>
-          <button class="tab" data-tab="ryder-winter-2026">Winter Ryder 2026</button>
+        <div class="section-head">
+          <h1 class="h1">Ryder SSM</h1>
+          <p class="muted">Noticias, clasificación general e histórico de Ryders.</p>
         </div>
 
-        <!-- NOTICIAS -->
-        <section class="tab-panel is-active" id="ryder-news">
-         <div class="stack">
-  <!-- FEED ARRIBA -->
-  <div class="card">
-    <div class="card__head">
-      <h3 class="h3">Últimas noticias Ryder</h3>
-    </div>
-    <div id="ryderFeed" class="feed"></div>
-  </div>
+        <div class="tabs" role="tablist" aria-label="Navegación Ryder SSM">
+          <button class="tab is-active" data-tab="ryder-news" role="tab" aria-selected="true">Noticias</button>
+          <button class="tab" data-tab="ryder-standings" role="tab" aria-selected="false">Clasificación general</button>
+          <button class="tab" data-tab="ryder-winter-2026" role="tab" aria-selected="false">Winter Ryder 2026</button>
+        </div>
 
-  <!-- FORMULARIO ABAJO -->
-  <div class="card">
-    <h3 class="h3">Publicar en Ryder</h3>
-    <form id="ryderPostForm" class="form">
-      <input class="input" name="title" placeholder="Título" required />
-      <textarea class="textarea" name="body" placeholder="Mensaje" required></textarea>
-      <input class="input" name="imageUrl" placeholder="URL imagen (opcional)" />
-      <button class="btn" type="submit">Publicar</button>
-    </form>
-  </div>
-</div>
+        <!-- Noticias -->
+        <section class="tab-panel is-active" id="ryder-news" role="tabpanel">
+          <div class="stack">
+            <!-- FEED ARRIBA -->
+            <div class="card">
+              <div class="card__head">
+                <h3 class="h3">Últimas noticias Ryder</h3>
+              </div>
+              <div id="ryderFeed" class="feed" aria-live="polite"></div>
+            </div>
 
-        </section>
+            <!-- FORM ABAJO -->
+            <div class="card">
+              <h3 class="h3">Publicar en Ryder</h3>
+              <form id="ryderPostForm" class="form">
+                <label class="label">
+                  Título
+                  <input class="input" name="title" type="text" maxlength="80" placeholder="Ej.: Recordatorio horarios" required />
+                </label>
 
-        <!-- CLASIFICACIÓN -->
-        <section class="tab-panel" id="ryder-standings">
-          <div class="card">
-            <h3 class="h3">Clasificación general</h3>
-            <p class="muted">En construcción.</p>
+                <label class="label">
+                  Mensaje
+                  <textarea class="textarea" name="body" rows="4" maxlength="800" placeholder="Escribe aquí..." required></textarea>
+                </label>
+
+                <label class="label">
+                  Imagen (URL opcional)
+                  <input class="input" name="imageUrl" type="url" placeholder="https://..." />
+                </label>
+
+                <!-- NUEVO: clave familiar -->
+                <label class="label">
+                  Clave familiar
+                  <input class="input" name="familyKey" type="password" placeholder="FAMILIASSM" required />
+                </label>
+
+                <button class="btn" type="submit">Publicar</button>
+              </form>
+            </div>
           </div>
         </section>
 
-        <!-- WINTER RYDER 2026 -->
-        <section class="tab-panel" id="ryder-winter-2026">
-          <div class="card card--banner">
-  <div class="banner">
-    <div class="banner__text">
-      <h2 class="h2">Winter Ryder 2026</h2>
-      <p class="muted">Sábado 10 de enero de 2026</p>
-    </div>
+        <!-- Clasificación general -->
+        <section class="tab-panel" id="ryder-standings" role="tabpanel">
+          <div class="card">
+            <div class="card__head">
+              <div>
+                <h3 class="h3">Clasificación general (acumulada)</h3>
+                <p class="tiny muted">
+                  Orden: <strong>Victorias</strong> (desc) → desempate por <strong>Ryders ganadas</strong> (desc).
+                  El resto son estadísticas.
+                </p>
+              </div>
+            </div>
 
-    <!-- Logo visible (arriba/derecha en desktop; se recoloca en móvil) -->
-    <img
-      src="assets/winter-ryder-2026.png"
-      alt="Logo Winter Ryder SSM 2026"
-      class="banner__img"
-    />
-  </div>
-</div>
-
-<div class="grid-2">
-  <!-- EQUIPOS -->
-  <div class="card">
-    <h3 class="h3">Equipos y polos</h3>
-
-    <div class="team team--white">
-      <div class="team__head">
-        <span class="pill">Equipo BLANCO (polo blanco)</span>
-        <span class="pill pill--cap">Capitán: Rafa</span>
-      </div>
-      <ul class="list">
-        <li>Rafa</li>
-        <li>Larkin</li>
-        <li>Jimmy</li>
-        <li>Tomás</li>
-        <li>Gonzalo</li>
-        <li>José Feser</li>
-      </ul>
-    </div>
-
-    <div class="team team--blue">
-      <div class="team__head">
-        <span class="pill">Equipo AZUL (polo oscuro)</span>
-        <span class="pill pill--cap">Capitán: Juanito</span>
-      </div>
-      <ul class="list">
-        <li>Juanito</li>
-        <li>Borja</li>
-        <li>Peri</li>
-        <li>Sebas</li>
-        <li>Richi</li>
-        <li>Chono</li>
-      </ul>
-    </div>
-
-    <p class="tiny muted">
-      Formato: match play, a pelo (sin golpes). Excepción: Peri y Jimmy si lo acuerdan entre ellos.
-    </p>
-  </div>
-
-  <!-- ENFRENTAMIENTOS -->
-  <div class="card">
-    <h3 class="h3">Horarios y enfrentamientos</h3>
-
-    <div class="matches">
-      <div class="match-slot">
-        <div class="match-slot__time">09:40</div>
-        <div class="match">
-          <span class="tag tag--white">Blanco</span>
-          <span>José Feser</span>
-          <span class="vs">vs</span>
-          <span>Chono</span>
-          <span class="tag tag--blue">Azul</span>
-        </div>
-        <div class="match">
-          <span class="tag tag--white">Blanco</span>
-          <span>Jimmy</span>
-          <span class="vs">vs</span>
-          <span>Peri</span>
-          <span class="tag tag--blue">Azul</span>
-        </div>
-      </div>
-
-      <div class="match-slot">
-        <div class="match-slot__time">09:50</div>
-        <div class="match">
-          <span class="tag tag--white">Blanco</span>
-          <span>Gonzalo</span>
-          <span class="vs">vs</span>
-          <span>Richi</span>
-          <span class="tag tag--blue">Azul</span>
-        </div>
-        <div class="match">
-          <span class="tag tag--white">Blanco</span>
-          <span>Tomás</span>
-          <span class="vs">vs</span>
-          <span>Sebas</span>
-          <span class="tag tag--blue">Azul</span>
-        </div>
-      </div>
-
-      <div class="match-slot">
-        <div class="match-slot__time">10:30</div>
-        <div class="match">
-          <span class="tag tag--white">Blanco</span>
-          <span>Larkin</span>
-          <span class="vs">vs</span>
-          <span>Borja</span>
-          <span class="tag tag--blue">Azul</span>
-        </div>
-        <div class="match">
-          <span class="tag tag--white">Blanco</span>
-          <span>Rafa</span>
-          <span class="vs">vs</span>
-          <span>Juanito</span>
-          <span class="tag tag--blue">Azul</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+            <div class="table-wrap">
+              <table class="table" aria-label="Tabla de clasificación general">
+                <thead>
+                  <tr>
+                    <th class="col-pos">Pos</th>
+                    <th class="col-player">Jugador</th>
+                    <th>Victorias</th>
+                    <th>Empates</th>
+                    <th>Derrotas</th>
+                    <th>Partidos</th>
+                    <th>Ryders ganadas</th>
+                    <th>Ryders jugadas</th>
+                    <th>Pts</th>
+                    <th>Pts/Partido</th>
+                    <th class="col-scratch">Scratch (Med | Mejor | Peor)</th>
+                  </tr>
+                </thead>
+                <tbody id="standingsBody">
+                  <!-- Renderizado por app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
         </section>
 
+        <!-- Winter Ryder 2026 -->
+        <section class="tab-panel" id="ryder-winter-2026" role="tabpanel">
+          <div class="card card--banner">
+            <div class="banner">
+              <div class="banner__text">
+                <h2 class="h2">Winter Ryder 2026</h2>
+                <p class="muted">Sábado 10 de enero de 2026</p>
+              </div>
+
+              <img
+                src="winter-ryder-2026.png"
+                alt="Logo Winter Ryder SSM 2026"
+                class="banner__img"
+              />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3 class="h3">Equipos y polos</h3>
+
+              <div class="team team--white">
+                <div class="team__head">
+                  <span class="pill">Equipo BLANCO (polo blanco)</span>
+                  <span class="pill pill--cap">Capitán: Rafa</span>
+                </div>
+                <ul class="list">
+                  <li>Rafa</li>
+                  <li>Larkin</li>
+                  <li>Jimmy</li>
+                  <li>Tomás</li>
+                  <li>Gonzalo</li>
+                  <li>Fesser</li>
+                </ul>
+              </div>
+
+              <div class="team team--blue">
+                <div class="team__head">
+                  <span class="pill">Equipo AZUL (polo oscuro)</span>
+                  <span class="pill pill--cap">Capitán: Juanito</span>
+                </div>
+                <ul class="list">
+                  <li>Juanito</li>
+                  <li>Borja</li>
+                  <li>Peri</li>
+                  <li>Sebas</li>
+                  <li>Richi</li>
+                  <li>Chono</li>
+                </ul>
+              </div>
+
+              <p class="tiny muted">
+                Formato: match play, a pelo (sin golpes). Excepción: Peri y Jimmy si lo acuerdan entre ellos.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3 class="h3">Horarios y enfrentamientos</h3>
+
+              <div class="matches">
+                <div class="match-slot">
+                  <div class="match-slot__time">09:40</div>
+                  <div class="match">
+                    <span class="tag tag--white">Blanco</span><span>Fesser</span>
+                    <span class="vs">vs</span>
+                    <span>Chono</span><span class="tag tag--blue">Azul</span>
+                  </div>
+                  <div class="match">
+                    <span class="tag tag--white">Blanco</span><span>Jimmy</span>
+                    <span class="vs">vs</span>
+                    <span>Peri</span><span class="tag tag--blue">Azul</span>
+                  </div>
+                </div>
+
+                <div class="match-slot">
+                  <div class="match-slot__time">09:50</div>
+                  <div class="match">
+                    <span class="tag tag--white">Blanco</span><span>Gonzalo</span>
+                    <span class="vs">vs</span>
+                    <span>Richi</span><span class="tag tag--blue">Azul</span>
+                  </div>
+                  <div class="match">
+                    <span class="tag tag--white">Blanco</span><span>Tomás</span>
+                    <span class="vs">vs</span>
+                    <span>Sebas</span><span class="tag tag--blue">Azul</span>
+                  </div>
+                </div>
+
+                <div class="match-slot">
+                  <div class="match-slot__time">10:30</div>
+                  <div class="match">
+                    <span class="tag tag--white">Blanco</span><span>Larkin</span>
+                    <span class="vs">vs</span>
+                    <span>Borja</span><span class="tag tag--blue">Azul</span>
+                  </div>
+                  <div class="match">
+                    <span class="tag tag--white">Blanco</span><span>Rafa</span>
+                    <span class="vs">vs</span>
+                    <span>Juanito</span><span class="tag tag--blue">Azul</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <h4 class="h4">Notas rápidas</h4>
+              <ul class="list">
+                <li>Si se actualizan enfrentamientos, se reflejan aquí.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
       </section>
     </main>
 
+    <footer class="footer">
+      <div class="container footer-row">
+        <span class="tiny muted">SSM — sitio familiar</span>
+        <span class="tiny muted">v0.3</span>
+      </div>
+    </footer>
+
+    <!-- Supabase JS (necesario para posts compartidos) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
   </body>
 </html>
-
