@@ -15,7 +15,7 @@ function setActivePage(pageKey) {
 function parseRoute() {
   const hash = window.location.hash || "#/home";
   const route = hash.replace("#/", "").trim().toLowerCase();
-  const allowed = new Set(["home", "alcoholimpiadas", "ryder", "arbol"]);
+  const allowed = new Set(["home", "alcoholimpiadas", "ryder", "historia"]);
   return allowed.has(route) ? route : "home";
 }
 
@@ -51,6 +51,33 @@ if (tabButtons.length && tabPanels.length) {
   });
   const initial = tabButtons.find((b) => b.classList.contains("is-active"))?.dataset.tab || tabButtons[0].dataset.tab;
   setActiveTab(initial);
+}
+/* =========
+   Tabs Historia de la familia
+   ========= */
+const hTabButtons = Array.from(document.querySelectorAll('[data-htab]'));
+
+function setActiveHistoryTab(tabId) {
+  hTabButtons.forEach((b) => {
+    const active = b.dataset.htab === tabId;
+    b.classList.toggle("is-active", active);
+    b.setAttribute("aria-selected", String(active));
+  });
+
+  const panels = ["historia-intro", "historia-blason", "historia-arbol", "historia-crono", "historia-docs"];
+  panels.forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle("is-active", id === tabId);
+  });
+}
+
+if (hTabButtons.length) {
+  hTabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => setActiveHistoryTab(btn.dataset.htab));
+  });
+  const initial = hTabButtons.find((b) => b.classList.contains("is-active"))?.dataset.htab || hTabButtons[0].dataset.htab;
+  setActiveHistoryTab(initial);
 }
 
 /* =========
@@ -472,3 +499,37 @@ function renderStandingsTable() {
 initStandingsState();
 renderStandingsTable();
 
+// ===== Tabs: Historia de la familia (data-htab) =====
+(function () {
+  const tabsWrap = document.querySelector(".tabs--historia");
+  if (!tabsWrap) return;
+
+  const buttons = Array.from(tabsWrap.querySelectorAll(".tab[data-htab]"));
+
+  function activate(panelId) {
+    // Botones
+    buttons.forEach((b) => {
+      const on = b.getAttribute("data-htab") === panelId;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-selected", on ? "true" : "false");
+    });
+
+    // Paneles (solo dentro de la página Historia)
+    const historiaPage = document.querySelector('.page[data-page="historia"]');
+    if (!historiaPage) return;
+
+    const panels = Array.from(historiaPage.querySelectorAll(".tab-panel"));
+    panels.forEach((p) => p.classList.remove("is-active"));
+
+    const target = historiaPage.querySelector(`#${panelId}`);
+    if (target) target.classList.add("is-active");
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => activate(btn.getAttribute("data-htab")));
+  });
+
+  // Estado inicial: si no hay ninguno activo, activa el Resumen
+  const initial = buttons.find((b) => b.classList.contains("is-active"))?.getAttribute("data-htab") || "historia-intro";
+  activate(initial);
+})();
